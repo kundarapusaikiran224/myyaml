@@ -1,0 +1,76 @@
+trigger:
+
+- none
+
+
+
+pr:
+
+- none
+
+
+
+
+parameters:
+
+  - name: Env_Type
+
+    displayName: "Select Env Type"
+
+    type: string
+
+    default: DEV
+
+    values: [DEV, E2E, QA, PERF, PROD]                 
+
+
+
+  - name: Release
+
+    displayName: "Select Application Release"
+
+    type: string
+
+    default: NONE
+
+    values: [NONE, 2112, 2201, 2202, 2203 ]
+
+
+
+  - name: Module
+
+    displayName: "Select Module"
+
+    type: string
+
+    default: All
+
+    values: [All,
+
+               "cert-manager",
+
+               "monitoring", "consul", "ads", "rerating",
+
+               ]
+
+
+
+stages:
+
+  - stage: Print_All_Variable
+
+    
+
+    displayName: "Print All Variable"
+
+
+
+    jobs:
+
+      - job: 'print_variable'
+
+        displayName: "Pre Release"
+
+        steps:
+
+          - task: printAllVariables@1
